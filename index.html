@@ -1,0 +1,952 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Daily Crumbs | Fresh Crumbs Everyday</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:'Poppins',sans-serif;
+    background:#fff8f6;
+    color:#333;
+    overflow-x:hidden;
+}
+
+/* SCROLLBAR */
+::-webkit-scrollbar{
+    width:8px;
+}
+
+::-webkit-scrollbar-thumb{
+    background:#ff9fb2;
+    border-radius:20px;
+}
+
+/* HEADER */
+
+header{
+    width:100%;
+    padding:20px 8%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    position:fixed;
+    top:0;
+    left:0;
+    z-index:999;
+    background:rgba(255,255,255,0.8);
+    backdrop-filter:blur(12px);
+    box-shadow:0 5px 20px rgba(0,0,0,0.05);
+}
+
+.logo{
+    font-size:32px;
+    font-weight:700;
+    color:#ff5c8d;
+    font-family:'Playfair Display',serif;
+}
+
+.logo span{
+    color:#ffb6c8;
+}
+
+nav{
+    display:flex;
+    gap:25px;
+}
+
+nav a{
+    text-decoration:none;
+    color:#444;
+    font-weight:500;
+    transition:0.3s;
+    position:relative;
+}
+
+nav a::after{
+    content:'';
+    width:0%;
+    height:2px;
+    background:#ff5c8d;
+    position:absolute;
+    left:0;
+    bottom:-5px;
+    transition:0.3s;
+}
+
+nav a:hover::after{
+    width:100%;
+}
+
+nav a:hover{
+    color:#ff5c8d;
+}
+
+/* HERO */
+
+.hero{
+    min-height:100vh;
+    padding:140px 8% 80px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:50px;
+    background:linear-gradient(to right,#fff8f6,#ffe6ee);
+}
+
+.hero-text{
+    flex:1;
+    animation:fadeUp 1s ease;
+}
+
+.tagline{
+    background:#ffd4e0;
+    color:#ff4f87;
+    padding:8px 18px;
+    border-radius:30px;
+    font-size:14px;
+    font-weight:600;
+}
+
+.hero-text h1{
+    font-size:65px;
+    line-height:1.1;
+    margin:25px 0;
+    color:#222;
+    font-family:'Playfair Display',serif;
+}
+
+.hero-text p{
+    font-size:17px;
+    line-height:1.8;
+    color:#666;
+    margin-bottom:35px;
+}
+
+.btn-hero{
+    padding:16px 34px;
+    border:none;
+    background:linear-gradient(135deg,#ff5c8d,#ff9fb2);
+    color:white;
+    border-radius:40px;
+    font-size:16px;
+    cursor:pointer;
+    transition:0.4s;
+    font-weight:600;
+    box-shadow:0 10px 25px rgba(255,92,141,0.3);
+}
+
+.btn-hero:hover{
+    transform:translateY(-5px) scale(1.03);
+}
+
+.hero-image{
+    flex:1;
+    display:flex;
+    justify-content:center;
+    animation:float 4s ease-in-out infinite;
+}
+
+.hero-image img{
+    width:100%;
+    max-width:500px;
+    border-radius:30px;
+    box-shadow:0 25px 40px rgba(0,0,0,0.15);
+}
+
+/* BENEFITS */
+
+.benefits{
+    padding:80px 8%;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:30px;
+}
+
+.benefit-box{
+    background:white;
+    padding:40px 30px;
+    border-radius:25px;
+    text-align:center;
+    transition:0.4s;
+    box-shadow:0 10px 30px rgba(0,0,0,0.05);
+}
+
+.benefit-box:hover{
+    transform:translateY(-10px);
+}
+
+.benefit-box h3{
+    margin-bottom:12px;
+    color:#ff5c8d;
+}
+
+/* TITLE */
+
+section h2{
+    text-align:center;
+    font-size:42px;
+    margin-bottom:50px;
+    color:#222;
+    font-family:'Playfair Display',serif;
+}
+
+/* MENU */
+
+.menu-list{
+    padding:80px 8%;
+}
+
+.menu-container{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:25px;
+}
+
+.menu-item{
+    background:white;
+    border-radius:25px;
+    padding:30px;
+    text-align:center;
+    transition:0.4s;
+    position:relative;
+    overflow:hidden;
+    box-shadow:0 10px 30px rgba(0,0,0,0.06);
+}
+
+.menu-item:hover{
+    transform:translateY(-8px);
+}
+
+.menu-item.best{
+    border:2px solid #ff9fb2;
+}
+
+.best-text{
+    margin:12px 0;
+    color:#ff5c8d;
+    font-weight:600;
+}
+
+.rating{
+    color:#ffb400;
+    font-weight:600;
+}
+
+/* PRODUCTS */
+
+.products{
+    padding:80px 8%;
+    background:#fff0f5;
+}
+
+.product-container{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:35px;
+}
+
+.product-card{
+    background:white;
+    border-radius:30px;
+    overflow:hidden;
+    position:relative;
+    transition:0.4s;
+    box-shadow:0 15px 35px rgba(0,0,0,0.08);
+}
+
+.product-card:hover{
+    transform:translateY(-12px);
+}
+
+.product-card img{
+    width:100%;
+    height:250px;
+    object-fit:cover;
+    cursor:pointer;
+    transition:0.4s;
+}
+
+.product-card:hover img{
+    transform:scale(1.05);
+}
+
+.product-card h3{
+    margin-top:20px;
+    text-align:center;
+    font-size:24px;
+}
+
+.product-card p{
+    text-align:center;
+    margin-top:8px;
+}
+
+.price{
+    color:#ff5c8d;
+    font-size:22px;
+    font-weight:700;
+}
+
+.badge{
+    position:absolute;
+    top:15px;
+    left:15px;
+    background:#ff5c8d;
+    color:white;
+    padding:8px 14px;
+    border-radius:30px;
+    font-size:13px;
+    font-weight:600;
+    z-index:10;
+}
+
+.btn-beli{
+    display:block;
+    margin:25px auto 30px;
+    width:85%;
+    text-align:center;
+    padding:14px;
+    border-radius:40px;
+    text-decoration:none;
+    color:white;
+    background:linear-gradient(135deg,#ff5c8d,#ff9fb2);
+    transition:0.4s;
+    font-weight:600;
+}
+
+.btn-beli:hover{
+    transform:scale(1.03);
+}
+
+/* TEAM */
+
+.team{
+    padding:90px 8%;
+}
+
+.team-container{
+    display:flex;
+    justify-content:center;
+}
+
+.member{
+    background:white;
+    padding:30px;
+    border-radius:30px;
+    text-align:center;
+    width:320px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.07);
+}
+
+.member img{
+    width:180px;
+    height:180px;
+    object-fit:cover;
+    border-radius:50%;
+    border:6px solid #ffd4e0;
+    margin-bottom:20px;
+}
+
+/* CONTACT */
+
+.subscribe{
+    padding:90px 8%;
+    background:linear-gradient(to right,#ff5c8d,#ff9fb2);
+    color:white;
+}
+
+.instagram-center{
+    text-align:center;
+}
+
+.instagram-center p{
+    margin:20px auto;
+    max-width:700px;
+    line-height:1.8;
+}
+
+.ig-button{
+    display:inline-flex;
+    align-items:center;
+    gap:12px;
+    background:white;
+    color:#ff5c8d;
+    padding:16px 28px;
+    border-radius:50px;
+    text-decoration:none;
+    margin:15px;
+    font-weight:600;
+    transition:0.4s;
+}
+
+.ig-button img{
+    width:28px;
+}
+
+.ig-button:hover{
+    transform:translateY(-5px);
+}
+
+/* FOOTER */
+
+footer{
+    padding:25px;
+    text-align:center;
+    background:#fff;
+    color:#777;
+}
+
+/* POPUP */
+
+.chat-popup{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.5);
+    display:none;
+    justify-content:center;
+    align-items:center;
+    z-index:1000;
+    padding:20px;
+}
+
+.chat-box{
+    width:100%;
+    max-width:500px;
+    background:white;
+    padding:35px;
+    border-radius:30px;
+    position:relative;
+    animation:popup 0.4s ease;
+}
+
+.close-btn{
+    position:absolute;
+    right:25px;
+    top:20px;
+    font-size:24px;
+    cursor:pointer;
+}
+
+.chat-box h3{
+    color:#ff5c8d;
+    margin-bottom:15px;
+}
+
+.chat-box p{
+    line-height:1.8;
+    color:#555;
+}
+
+/* ANIMATION */
+
+@keyframes float{
+    0%{transform:translateY(0px);}
+    50%{transform:translateY(-15px);}
+    100%{transform:translateY(0px);}
+}
+
+@keyframes fadeUp{
+    from{
+        opacity:0;
+        transform:translateY(40px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+@keyframes popup{
+    from{
+        opacity:0;
+        transform:scale(0.8);
+    }
+    to{
+        opacity:1;
+        transform:scale(1);
+    }
+}
+
+/* RESPONSIVE */
+
+@media(max-width:900px){
+
+    .hero{
+        flex-direction:column;
+        text-align:center;
+    }
+
+    .hero-text h1{
+        font-size:48px;
+    }
+
+    header{
+        flex-direction:column;
+        gap:15px;
+    }
+
+    nav{
+        flex-wrap:wrap;
+        justify-content:center;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">Daily<span>Crumbs</span></div>
+
+    <nav>
+        <a href="#">Home</a>
+        <a href="#menu">Menu</a>
+        <a href="#produk">Produk</a>
+        <a href="#team">Tentang</a>
+        <a href="#subscribe">Kontak</a>
+    </nav>
+</header>
+
+<section class="hero">
+
+    <div class="hero-text">
+        <span class="tagline">Freshly Baked Every Day ✨</span>
+
+        <h1>Nikmati Roti Lembut dan Dessert Premium</h1>
+
+        <p>
+            Daily Crumbs hadir dengan berbagai roti dan pastry premium 
+            yang dibuat fresh setiap hari menggunakan bahan berkualitas terbaik.
+        </p>
+
+        <button class="btn-hero" onclick="location.href='#produk'">
+            Explore Products
+        </button>
+    </div>
+
+    <div class="hero-image">
+        <img src="profil.jpeg">
+    </div>
+
+</section>
+
+<section class="benefits">
+
+    <div class="benefit-box">
+        <h3>Fresh Everyday</h3>
+        <p>Dipanggang setiap pagi dengan kualitas terbaik.</p>
+    </div>
+
+    <div class="benefit-box">
+        <h3>Premium Ingredients</h3>
+        <p>Tanpa bahan pengawet dan menggunakan bahan pilihan.</p>
+    </div>
+
+    <div class="benefit-box">
+        <h3>Best Taste</h3>
+        <p>Rasa manis yang lembut dan bikin nagih.</p>
+    </div>
+
+</section>
+
+<section class="menu-list" id="menu">
+
+    <h2>Best Menu</h2>
+
+    <div class="menu-container">
+
+        <div class="menu-item best">
+            <h3>Macaron 🔥</h3>
+            <div class="best-text">Best Seller</div>
+            <div class="rating">⭐⭐⭐⭐⭐ (4.9)</div>
+        </div>
+
+        <div class="menu-item best">
+            <h3>Bombolone 🔥</h3>
+            <div class="best-text">Trending</div>
+            <div class="rating">⭐⭐⭐⭐⭐ (4.8)</div>
+        </div>
+
+        <div class="menu-item best">
+            <h3>Cookies 🔥</h3>
+            <div class="best-text">Favorite</div>
+            <div class="rating">⭐⭐⭐⭐⭐ (4.7)</div>
+        </div>
+
+        <div class="menu-item">
+            <h3>Croissant</h3>
+            <div class="rating">⭐⭐⭐⭐ (4.5)</div>
+        </div>
+
+        <div class="menu-item">
+            <h3>Cromboloni</h3>
+            <div class="rating">⭐⭐⭐⭐⭐ (4.8)</div>
+        </div>
+
+        <div class="menu-item">
+            <h3>Cheese Tart</h3>
+            <div class="rating">⭐⭐⭐⭐⭐ (4.9)</div>
+        </div>
+
+        <div class="menu-item"> 
+            <h3>Roti Sosis</h3> 
+            <div class="rating">⭐⭐⭐⭐ (4.4)</div> 
+        </div> 
+        
+        <div class="menu-item"> 
+            <h3>Roti Coklat</h3> 
+            <div class="rating">⭐⭐⭐⭐ (4.3)</div> 
+        </div> 
+        
+        <div class="menu-item">
+            <h3>Brownies</h3> 
+            <div class="rating">⭐⭐⭐⭐ (4.6)</div> 
+        </div> 
+        
+        <div class="menu-item"> 
+            <h3>Banana Bread</h3> 
+            <div class="rating">⭐⭐⭐⭐ (4.5)</div> 
+        </div>
+
+        <div class="menu-item"> 
+            <h3>Donat Coklat</h3> 
+            <div class="rating">⭐⭐⭐⭐ (4.3)</div> 
+        </div> 
+        
+        <div class="menu-item best"> 
+            <h3>Roti Keju</h3> 
+            <div class="rating">⭐⭐⭐⭐⭐ (4.8)</div> 
+        </div>
+
+    </div>
+
+</section>
+
+<section class="products" id="produk">
+
+    <h2>Produk Kami</h2>
+
+    <div class="product-container">
+
+        <div class="product-card">
+
+            <span class="badge">Best Seller</span>
+
+            <img src="makaroni.jpeg"
+            onclick="openChat(
+            'Macaron',
+            'Macaron dibuat dari putih telur, gula halus, dan almond powder. Memiliki tekstur renyah di luar dan lembut di dalam.'
+            )">
+
+            <h3>Macaron</h3>
+
+            <p>⭐⭐⭐⭐⭐</p>
+
+            <p class="price">Rp 45.000</p>
+
+            <a href="https://wa.me/6283164885431?text=Halo%20saya%20ingin%20order%20produk%20Macaron%20Daily%20Crumbs"
+            class="btn-beli"
+            target="_blank">
+            Order Now
+            </a>
+
+        </div>
+
+        <div class="product-card">
+
+            <img src="bombolone.jpeg"
+            onclick="openChat(
+            'Bombolone',
+            'Bombolone adalah donat isi premium dengan filling custard atau coklat yang lembut.'
+            )">
+
+            <h3>Bombolone</h3>
+
+            <p>⭐⭐⭐⭐⭐</p>
+
+            <p class="price">Rp 10.000</p>
+
+            <a href="https://wa.me/6283164885431?text=Halo%20saya%20ingin%20order%20produk%20Bombolone%20Daily%20Crumbs"
+            class="btn-beli"
+            target="_blank">
+            Order Now
+            </a>
+
+        </div>
+
+        <div class="product-card">
+
+            <span class="badge">Best Seller</span>
+
+            <img src="chocochips.jpeg"
+            onclick="openChat(
+            'Cookies',
+            'Cookies dibuat dari butter premium dan choco chips pilihan.'
+            )">
+
+            <h3>Cookies</h3>
+
+            <p>⭐⭐⭐⭐⭐</p>
+
+            <p class="price">Rp 20.000</p>
+
+            <a href="https://wa.me/6283164885431?text=Halo%20saya%20ingin%20order%20produk%20Cookies%20Daily%20Crumbs"
+            class="btn-beli"
+            target="_blank">
+            Order Now
+            </a>
+
+        </div>
+
+        <div class="product-card">
+
+            <img src="donatcoklat.jpeg"
+            onclick="openChat(
+            'Donat Coklat',
+            'Donat coklat adalah adonan goreng yang lembut, lalu diberi topping coklat leleh atau meses.'
+            )">
+
+            <h3>Donat Coklat</h3>
+
+            <p>⭐⭐⭐⭐⭐</p>
+
+            <p class="price">Rp 10.000</p>
+
+            <a href="https://wa.me/6283164885431?text=Halo%20saya%20ingin%20order%20produk%20Donat%20Coklat%20Daily%20Crumbs"
+            class="btn-beli"
+            target="_blank">
+            Order Now
+            </a>
+
+        </div>
+
+        <div class="product-card">
+
+            <span class="badge">Best Seller</span>
+
+            <img src="croissant (2).jpeg"
+            onclick="openChat(
+            'Croissant',
+            'Croissant dibuat dari adonan berlapis mentega (laminasi), dilipat berulang lalu dipanggang hingga renyah di luar dan lembut di dalam.'
+            )">
+
+            <h3>Croissant</h3>
+
+            <p>⭐⭐⭐⭐⭐</p>
+
+            <p class="price">Rp 13.000</p>
+
+            <a href="https://wa.me/6283164885431?text=Halo%20saya%20ingin%20order%20produk%20Croissant%20Daily%20Crumbs"
+            class="btn-beli"
+            target="_blank">
+            Order Now
+            </a>
+
+        </div>
+
+        <div class="product-card">
+
+            <img src="cromboloni.jpeg"
+            onclick="openChat(
+            'Cromboloni',
+            'Cromboloni adalah croissant bulat berlapis mentega, dipanggang lalu diisi krim manis seperti coklat atau custard.'
+            )">
+
+            <h3>Cromboloni</h3>
+
+            <p>⭐⭐⭐⭐⭐</p>
+
+            <p class="price">Rp 15.000</p>
+
+            <a href="https://wa.me/6283164885431?text=Halo%20saya%20ingin%20order%20produk%20Cromboloni%20Daily%20Crumbs"
+            class="btn-beli"
+            target="_blank">
+            Order Now
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+<section class="team" id="team">
+
+    <h2>Owner Daily Crumbs</h2>
+
+    <div class="team-container">
+
+        <div class="member">
+            <img src="aku1.jpeg">
+            <p><b>Zahwa Kharisa Putri Lubis</b></p>
+        </div>
+
+    </div>
+
+</section>
+
+<section class="subscribe" id="subscribe">
+
+    <div class="instagram-center">
+
+        <h2>Follow Our Journey ✨</h2>
+
+        <p>
+            Ikuti perjalanan Daily Crumbs dan dapatkan update 
+            menu terbaru setiap harinya.
+        </p>
+
+        <a href="https://wa.me/6283164885431?text=Halo%20saya%20ingin%20order%20produk%20Daily%20Crumbs"
+        target="_blank"
+        class="ig-button">
+
+            <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png">
+
+            <span>Order via WhatsApp</span>
+
+        </a>
+
+    </div>
+
+</section>
+
+<section class="testimonials">
+
+    <h2>Customer Reviews</h2>
+
+    <div class="testimonial-container">
+
+        <div class="testimonial-card">
+            <p>
+                “Rotinya lembut banget dan packagingnya aesthetic ✨”
+            </p>
+
+            <h4>— Aulia</h4>
+        </div>
+
+        <div class="testimonial-card">
+            <p>
+                “Macaronnya premium dan rasanya gak bikin enek!”
+            </p>
+
+            <h4>— Sarah</h4>
+        </div>
+
+        <div class="testimonial-card">
+            <p>
+                “Best bakery favorit aku sekarang 😍”
+            </p>
+
+            <h4>— Nabila</h4>
+        </div>
+
+    </div>
+
+</section>
+
+<footer>
+    <p>© 2026 Daily Crumbs | Designed with Love 💖</p>
+</footer>
+
+<!-- POPUP -->
+
+<div id="chatPopup" class="chat-popup">
+
+    <div class="chat-box">
+
+        <span class="close-btn"
+        onclick="closeChat()">✖</span>
+
+        <h3 id="chatTitle">Resep Produk</h3>
+
+        <p id="chatContent">
+            Isi resep muncul di sini...
+        </p>
+
+    </div>
+
+</div>
+
+<script>
+
+function openChat(title, text){
+
+    document.getElementById("chatPopup").style.display = "flex";
+
+    document.getElementById("chatTitle").innerText = title;
+
+    document.getElementById("chatContent").innerText = text;
+}
+
+function closeChat(){
+
+    document.getElementById("chatPopup").style.display = "none";
+}
+
+function openChat(title, text){
+
+    document.getElementById("chatPopup").style.display = "flex";
+
+    document.getElementById("chatTitle").innerText = title;
+
+    document.getElementById("chatContent").innerText = text;
+}
+
+function closeChat(){
+
+    document.getElementById("chatPopup").style.display = "none";
+}
+
+/* SCROLL BUTTON */
+
+window.onscroll = function(){
+
+    let btn = document.getElementById("scrollTopBtn");
+
+    if(document.body.scrollTop > 300 || document.documentElement.scrollTop > 300){
+
+        btn.style.display = "flex";
+
+    }else{
+
+        btn.style.display = "none";
+    }
+};
+
+function scrollToTop(){
+
+    window.scrollTo({
+        top:0,
+        behavior:'smooth'
+    });
+}
+
+</script>
+
+<button id="scrollTopBtn" onclick="scrollToTop()">
+    ↑
+</button>
+
+</body>
+</html>
